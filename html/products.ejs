@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/main-style.css">
+    <link rel="stylesheet" href="../css/products-style.css">
+
+    <title>Products</title>
+    <link rel="icon" href="../logo.png">
+
+</head>
+
+<body>
+<header>
+    <%- include('./partials/nav.ejs') %>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js"></script>
+</header>
+
+    <div class="container">
+        <div class="row productsBox">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card" data-type="Keyboards">
+                            <img class="card-img-top" src="../images/mechanicalKeyboard.jpeg" alt="Keyboard">
+                            <div class="card-body">
+                                <h5 class="card-title">Mechanical Keyboard</h5>
+                                <p class="card-text">$100.00</p>
+                                <p class="card-text">Type: Keyboards</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card" data-type="Parts">
+                            <img class="card-img-top" src="../images/keyboardCase.jpeg" alt="keyboardCase">
+                            <div class="card-body">
+                                <h5 class="card-title">Keyboard case</h5>
+                                <p class="card-text">$15.00</p>
+                                <p class="card-text">Type: Parts</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card" data-type="Parts">
+                            <img class="card-img-top" src="../images/keyboardPlate.jpeg" alt="plate">
+                            <div class="card-body">
+                                <h5 class="card-title">Keyboard plate</h5>
+                                <p class="card-text">$32.00</p>
+                                <p class="card-text">Type: Parts</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card" data-type="Parts">
+                            <img class="card-img-top" src="../images/keyboardStabilizer.jpeg" alt="stabilizer">
+                            <div class="card-body">
+                                <h5 class="card-title">Keyboard stabilizer</h5>
+                                <p class="card-text">$7.00</p>
+                                <p class="card-text">Type: Parts</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card" data-type="Accessories">
+                            <img class="card-img-top" src="../images/keycaps.jpeg" alt="keycap">
+                            <div class="card-body">
+                                <h5 class="card-title">Keycaps</h5>
+                                <p class="card-text">$21.00</p>
+                                <p class="card-text">Type: Accessories</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card" data-type="Accessories">
+                            <img class="card-img-top" src="../images/PurpleSwitches.jpeg" alt="purpleSwitches">
+                            <div class="card-body">
+                                <h5 class="card-title">Purple Switches</h5>
+                                <p class="card-text">$75.00</p>
+                                <p class="card-text">Type: Accessories</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card" data-type="Accessories">
+                            <img class="card-img-top" src="/images/USBcaple.jpeg" alt="USBcaple">
+                            <div class="card-body">
+                                <h5 class="card-title">USB Caple</h5>
+                                <p class="card-text">$12.00</p>
+                                <p class="card-text">Type: Accessories</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card" data-type="Keyboards">
+                            <img class="card-img-top" src="../images/miniKeyboard.jpeg" alt="miniKeyboard">
+                            <div class="card-body">
+                                <h5 class="card-title">Mini keyboard</h5>
+                                <p class="card-text">$250.00</p>
+                                <p class="card-text">Type: Keyboards</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card" data-type="Keyboards">
+                            <img class="card-img-top" src="../images/wirelessKeyboard.jpeg" alt="wirelessKeyboard">
+                            <div class="card-body">
+                                <h5 class="card-title">Wireless keyboard</h5>
+                                <p class="card-text">$300.00</p>
+                                <p class="card-text">Type: Keyboards</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="filters">
+                    <h3 class="filtersHeadings">Filters</h3>
+                    <div class="form-check">
+                        <input class="form-check-input filter-type" type="checkbox" value="Keyboards"
+                            id="filter-type-keyboards">
+                        <label class="form-check-label" for="filter-type-keyboards">
+                            Keyboards
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input filter-type" type="checkbox" value="Parts"
+                            id="filter-type-parts">
+                        <label class="form-check-label" for="filter-type-parts">
+                            Parts
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input filter-type" type="checkbox" value="Accessories"
+                            id="filter-type-accessories">
+                        <label class="form-check-label" for="filter-type-accessories">
+                            Accessories
+                        </label>
+                    </div>
+                    <hr>
+                    <button class="btn btn-primary" id="filter-button">Apply Filters</button>
+                    <hr>
+                    <h5 class="filtersHeadings">Price Range:</h5>
+                    <input type="range" class="form-range filter-price" min="0" max="100" step="10" id="filter-price">
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+        crossorigin="anonymous"></script>
+    <script src="../js/products.js"></script>
+</body>
+
+</html>

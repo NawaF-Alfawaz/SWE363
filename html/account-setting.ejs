@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/account.css">
+    <link rel="stylesheet" href="../css/main-style.css">
+    <title>Account Settings</title>
+    <link rel="icon" href="../logo.png">
+
+</head>
+<body>
+    
+    <%- include('./partials/nav.ejs') %>
+    <h1 id="page-title">Account Setting</h1>
+    
+    <div id="account-setting">
+
+    <div id="side-bar">
+
+    <div class="user">
+        <img src="../nawaf.jpg" alt="">
+        <h3 class="name">User Name</h3>
+    </div>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="#orders">orders</a></li>
+            <li><a href="#addresses">Addresses</a></li>
+            <li><a href="#payments">Payments</a></li>
+            <li><a href="#security">Security</a></li>
+        </ul>
+    </nav>
+
+    </div>
+
+
+    <div class="content">
+
+    <section class="orders" id="orders">
+        <h1 class="heading">Orders</h1>
+
+
+        <div class="d-flex flex-column" style="height: 500px; padding-bottom: 5rem;">
+            <div class="flex-fill" style="overflow-y: auto;">
+              <!-- Your content here -->
+          
+        <% if(orders.length > 0){%>
+            <% orders.forEach (order => {%>
+                <% const id = order['_id'] %>
+                <% const items = order['items']%>
+                <% const total = order['total']%>
+                <div class="bg-body-tertiary rounded-4 section-item m-2" style="width: 40vw;">
+                    <h3 class="fw-bold">Order: <%=id%></h3>
+                    <div>
+                        <h5>Items: <%=items.length%></h5>
+                        <h5>Prics: <%=total%>$</h5>
+                        <br>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary shadow-none bottom-right" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            Order Details
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Items</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Hello!!
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+
+
+
+
+
+                    </div>
+                </div>
+
+            <%})%>
+
+        <%}%>
+
+    </div>
+</div>
+
+        
+        
+
+    </section>
+
+    <!-- about section  -->
+
+    <section class="addresses" id="addresses">
+        <h1 class="heading">Addresses</h1>
+        <div class="bg-body-tertiary rounded-4 section-item">
+            <h3 class="fw-bold">Home</h3>
+            <p>
+                Dhahran, Eastern Province, Saudi Arabia
+                <br>
+                ABC Street
+                <br>
+                34254
+            </p>
+            <button class="btn btn-primary shadow-none bottom-right">Edit</button>
+        </div>
+    </section>
+
+    <!-- service section  -->
+    <section class="payments" id="payments">
+        <h1 class="heading">Payments</h1>
+        <button type="button" class="btn btn-primary w-100">Add payment method</button>
+
+    </section>
+
+    <!-- contact section  -->
+    <section class="security" id="security">
+        <h1 class="heading">Security</h1>
+        <div st>
+            <div class="bg-body-tertiary rounded-4 section-item">
+                <div>
+                    <h3>Two-Factor Authentication</h3>
+                    <button class="btn btn-primary shadow-none">Setup</button>
+                </div>
+                <hr>
+                <div>
+                    <h3>Password</h3>
+                    <button class="btn btn-primary shadow-none">Update</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    </div>
+
+    </div>
+
+
+<!-- content section ends -->
+
+
+<!-- type.js link  -->
+<script src="../js/orders.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js"></script>
+
+</body>
+</html>
+
+
+
+
+
