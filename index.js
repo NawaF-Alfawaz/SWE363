@@ -1,29 +1,16 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Order = require('./models/order');
-const { result } = require('lodash');
-const { ObjectId } = require('mongodb');
+const db = require('./models/firebase');
+const {collection, getDocs} = require("firebase/firestore");
 
 
 // Express App
 const app = express();
+app.use(express.json());
 // Listen for requests
 app.listen(3000);
 
-// Connect  to MongoDB
-const uri = "mongodb+srv://nawaf1:aa123456@cluster0.nfiupzt.mongodb.net/Keyboarders?retryWrites=true&w=majority";
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
-
-async function connect(){
-    try{
-        await mongoose.connect(uri)
-        console.log("Connected");
-    } catch (error){
-        console.error(error);
-    }
-}
-
-connect();
 
 app.use(express.static('public'));
 
@@ -45,11 +32,15 @@ app.get('/products', (req, res) => {
 });
 
 app.get('/account-setting', (req, res) => {
-    
-    Order.find().then((orders) => {
+
+    const ordersRef = collection(db, "orders");
+    getDocs(ordersRef).then((querySnapshot) => {
+        const orders =  querySnapshot.docs;
         res.render('account-setting', {orders})
 
-    }).catch((err)=> console.log(err));
+      }).catch((error) => {
+        console.log("Error getting documents: ", error);
+      });
 
 });
 
