@@ -1,0 +1,141 @@
+
+#account-setting{
+    height: 100%;
+    width: 70vw;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    margin:3rem auto; 
+    color: black;
+    background-color: white;
+    box-shadow: 0 1rem 2rem rgba(0,0,0,.3);
+    backdrop-filter: blur(.4rem);
+    padding:1rem;
+    border-radius: 1rem;
+}
+
+#page-title {
+    font-weight: 600;
+    width: 70vw;
+    margin:3rem auto; 
+    color: var(--text-color);
+    font-size: 2rem;
+    line-height: 0.9;
+    white-space: nowrap;
+    margin-bottom: 1.2rem;
+}
+
+section{
+    padding:1rem 7%;
+    min-height: 100%;
+    margin: auto;
+}
+
+.btn-custom{
+    font-size: 1rem;
+    padding:.7rem 4rem;
+    background:rgba(255,255,255,.2);
+    color:#1111;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 2rem rgba(0,0,0,.2);
+    margin-top: 1rem;
+    cursor: pointer;
+    transition:.2s linear;
+}
+
+.btn-custom:hover{
+    background:rgba(255,255,255,.5);
+    color:#555;
+}
+
+.heading{
+    font-size: 1.5rem;
+    text-align: center;
+    padding:1rem;
+    color: #111;;
+
+}
+
+#side-bar{
+    width:30rem;
+    height:100%;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    justify-items: center;
+    align-content: center;
+    border-right: 0.1rem solid rgba(1,1,1,0.1);
+
+
+}
+
+
+
+#side-bar .user img{
+    margin:1rem 0;
+    height:10rem;
+    width:10rem;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 0 1rem rgba(255,255,255,.2);
+}
+
+#side-bar .user .name{
+    font-size: 1.5rem;
+    color:#111;
+    padding:.5rem 0;
+}
+
+#side-bar .user .post{
+    font-size: 0.9rem;
+    color: #111;;
+    font-weight: lighter;
+}
+
+#side-bar .navbar{
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    justify-items: center;
+    align-content: center;
+}
+
+#side-bar .navbar ul {
+    padding: 0;
+}
+
+#side-bar .navbar ul li{
+    list-style: none;
+    display: block;
+    width: 200px;
+    border-bottom: 0.1rem solid rgba(1,1,1,0.1);
+
+}
+
+#side-bar .navbar ul li a{
+    display: block;
+    width: 100%;
+    padding:1rem;
+    font-size: 1rem;
+    color:#111;
+}
+
+#side-bar .navbar ul li a:hover{
+    background:rgba(255,255,255,.5);
+    color:#555;
+}
+
+.content{
+    height:70vh;
+    width:70rem;
+    overflow: hidden;
+}
+
+.orders{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-flow: column;
+    position: relative;
+    padding-bottom: 5rem;
+}

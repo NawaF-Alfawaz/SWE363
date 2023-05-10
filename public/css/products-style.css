@@ -1,0 +1,35 @@
+#card-order {
+    border-radius: 20px;
+    box-shadow: 1px 2px 4px var(--main-color);
+    padding: 20px;
+    margin-bottom: 1rem;
+    background: linear-gradient(to top left, var(--bg-color), var(--input-bg));
+    height: 100%;
+    width: 100%;
+    transition: 1s;
+}
+.productsBox{
+    margin-top: 5%;
+}
+
+h4{
+    color: white;
+}
+
+.filtersHeadings, label{
+    color: white;
+}
+.filters{
+    border: 1px white solid;
+    border-radius: 0.5rem;
+    padding: 4%;
+}
+
+.card{
+    margin-bottom: 12%;
+}
+
+.card-img-top{
+    height: 60%;
+    width: 100%;
+}

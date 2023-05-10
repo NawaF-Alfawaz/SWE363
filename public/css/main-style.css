@@ -1,0 +1,125 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+*, *::before, *::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html {
+    font-size: 80%;
+}
+
+
+body {
+    position: relative;
+    font-family: "Poppins", sans-serif;
+    --main-hue: 208;
+    --main-color: hsl(var(--main-hue), 92%, 54%);
+    --main-color-hover: hsl(var(--main-hue), 77%, 48%);
+    --bg-color: hsl(var(--main-hue), 30%, 16.5%);
+    --input-bg: hsla(var(--main-hue), 22%, 50%, 11%);
+    --input-bg-hover: hsla(var(--main-hue), 22%, 50%, 18.5%);
+    --nav-color: hsl(var(--main-hue), 10%, 47%);
+    --light-text-color:  hsl(var(--main-hue), 12%, 46%);
+    --input-text:  hsl(var(--main-hue), 30%, 16.5%);
+    --input-shadow: hsl(var(--main-hue), 92%, 58%, 0.2);
+    --ligt-main-color: hsl(var(--main-hue), 91%, 55%);
+    --text-color: #fff;
+
+    background-color: var(--bg-color);
+    margin: 0 auto;
+    width: 100%;
+    max-width: 100rem;
+
+}
+
+.navbar{
+    --bs-navbar-padding-y:0;
+
+}
+.navbar-toggler{
+    border: 0;
+}
+
+
+.navbar-toggler:focus {
+    box-shadow:none;
+  }
+
+.bg-light {
+    --bs-bg-opacity: 0;
+  }
+
+
+a {
+    text-decoration: none;
+}
+
+
+.container {
+    width: 100%;
+    align-items: flex-end;
+    background-color: var(--bg-color);
+    padding: 20px;
+}
+
+
+#logo {
+    display: flex;
+    align-items: center;
+    margin-right: 3rem;
+
+}
+
+#logo img{
+    height: 60px;
+    margin-right: 0.8rem;
+}
+
+#logo h2 {
+    color: var(--text-color);
+    font-size: 2rem;
+    margin-top: 2px;
+}
+
+#logo h2 span {
+    color: var(--main-color);
+}
+
+.nav-link {
+    margin-left: 5.5rem;
+    padding: 0 1rem;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: var(--nav-color);
+    transition: 0.3s;
+}
+
+.nav-link:hover {
+    color: var(--main-color);
+}
+
+.shadow-none {
+    box-shadow: none;
+}
+
+.bottom-right {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.section-item {
+    padding: 10px;
+    width: 100%;
+    position: relative;
+}
+
+.selected {
+    color: white;
+}
+
+.wrap-none {
+    white-space: nowrap;
+}
+
