@@ -1,13 +1,15 @@
 const express = require('express');
-const mongoose = require('mongoose');
-const Order = require('./models/order');
 const db = require('./models/firebase');
-const {collection, getDocs} = require("firebase/firestore");
+const {collection, getDocs, query, where} = require("firebase/firestore");
+const bodyParser = require('body-parser');
+
 
 
 // Express App
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 // Listen for requests
 app.listen(3000);
 
@@ -28,7 +30,49 @@ app.get('/about-us', (req, res) => {
 });
 
 app.get('/products', (req, res) => {
-    res.render('products')
+
+    const productssRef = collection(db, "products");
+    getDocs(productssRef).then((querySnapshot) => {
+        const products =  querySnapshot.docs;
+        const filtered = ['Keyboards','Parts','Accessories'];
+
+        res.render('products', {products, filtered})
+
+      }).catch((error) => {
+        console.log("Error getting documents: ", error);
+      });
+});
+
+app.post('/products', (req, res) => {
+
+    const productsRef = collection(db, "products");
+    var filtered = req.body.productType;
+
+    if (filtered == null) {
+      filtered = [];
+      var products = [];
+      res.render('products', {products, filtered});
+
+    } else {
+
+      if(!Array.isArray(filtered)){
+        filtered = [filtered];
+      }
+
+      const q = query(productsRef, where("type", "in", filtered));
+      getDocs(q).then((querySnapshot) => {
+        const products =  querySnapshot.docs;
+        res.render('products', {products, filtered})
+
+      }).catch((error) => {
+        console.log("Error getting documents: ", error);
+      });
+    }
+    
+});
+
+app.post('/add_order', (req, res) => {
+  
 });
 
 app.get('/account-setting', (req, res) => {

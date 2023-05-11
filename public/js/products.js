@@ -24,7 +24,7 @@ for (let index = 0; index < document.querySelectorAll('.card').length; index++) 
   // Add an event listener to the element
   myElement.addEventListener('click', function () {
     // Navigate to the new page
-    window.location.href = 'product-generic.html';
+    window.location.href = 'product-generic.ejs';
   });
 
 }

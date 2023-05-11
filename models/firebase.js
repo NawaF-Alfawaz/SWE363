@@ -1,5 +1,5 @@
 const {initializeApp} = require("firebase/app");
-const {getFirestore} = require("firebase/firestore");
+const {getFirestore,} = require("firebase/firestore");
 
 
 const firebaseConfig = {
@@ -15,8 +15,5 @@ const firebaseConfig = {
 initializeApp(firebaseConfig);
 
 const db = getFirestore();
-//getDocs(colRef).then((snapshot) => {
-//  console.log(snapshot.docs);
-//});
 
 module.exports = db;

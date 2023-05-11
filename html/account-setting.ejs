@@ -61,12 +61,12 @@
                         <h5>Prics: <%=total%>$</h5>
                         <br>
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary shadow-none bottom-right" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                            Order Details
+                        <button type="button" class="btn btn-primary shadow-none bottom-right" data-bs-toggle="modal" data-bs-target="#orderModal<%= id %>">
+                        Order Details
                         </button>
 
                         <!-- Modal -->
-                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal fade" id="orderModal<%= id %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby= "staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                             <div class="modal-header">
