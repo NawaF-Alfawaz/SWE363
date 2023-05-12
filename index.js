@@ -1,6 +1,6 @@
 const express = require('express');
 const db = require('./models/firebase');
-const {collection, getDocs, query, where} = require("firebase/firestore");
+const {collection, getDocs, query, where, doc, getDoc} = require("firebase/firestore");
 const bodyParser = require('body-parser');
 
 
@@ -43,7 +43,7 @@ app.get('/products', (req, res) => {
       });
 });
 
-app.post('/products', (req, res) => {
+app.post('/products/filter', (req, res) => {
 
     const productsRef = collection(db, "products");
     var filtered = req.body.productType;
@@ -71,6 +71,24 @@ app.post('/products', (req, res) => {
     
 });
 
+app.post('/products/search', (req, res) => {
+  var searchWord = req.body.search;
+  const filtered = ['Keyboards','Parts','Accessories'];
+  const productsRef = collection(db, "products");
+
+  const q = query(productsRef, where("title", ">=", searchWord), where("title", "<=", searchWord + "\uf8ff"));
+      getDocs(q).then((querySnapshot) => {
+        const products =  querySnapshot.docs;
+        res.render('products', {products, filtered})
+
+      }).catch((error) => {
+        console.log("Error getting documents: ", error);
+      });
+
+  
+  
+});
+
 app.post('/add_order', (req, res) => {
   
 });
@@ -92,8 +110,22 @@ app.get('/cart-page-v3', (req, res) => {
     res.render('cart-page-v3')
 });
 
-app.get('/product-generic', (req, res) => {
-    res.render('product-generic')
+app.get('/products/:id', (req, res) => {
+  const productId = req.params.id;
+  console.log(productId);
+
+  const productsRef = collection(db, "products");
+
+  const docRef = doc(productsRef, productId);
+  getDoc(docRef).then((docSnapshot) => {
+      const product = docSnapshot.data();
+      console.log(product);
+      res.render('product-generic', {product})
+
+  }).catch((error) => {
+      console.log("Error getting document: ", error);
+  });
+
 });
 
 

@@ -1,13 +1,4 @@
-#card-order {
-    border-radius: 20px;
-    box-shadow: 1px 2px 4px var(--main-color);
-    padding: 20px;
-    margin-bottom: 1rem;
-    background: linear-gradient(to top left, var(--bg-color), var(--input-bg));
-    height: 100%;
-    width: 100%;
-    transition: 1s;
-}
+
 .productsBox{
     margin-top: 5%;
 }
@@ -32,4 +23,12 @@ h4{
 .card-img-top{
     height: 60%;
     width: 100%;
+}
+
+#search-input {
+    margin-right: 1rem;
+}
+
+.input-group {
+    margin-bottom: 2rem;
 }
