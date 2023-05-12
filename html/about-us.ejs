@@ -138,37 +138,35 @@
                       <p class="text">Or reach us via: <a href="mailto"> Info@Keyboarders.com</a></p>
                   </div>
                       
-                  <form action="/" method="post" class="contact-form">    
+                  <form action="/contact-us" method="POST" class="contact-form">    
                     <div class="row">
 
-                      <div class="col-lg-6">
                         <div class="input-wrap">
-                          <input autocomplete="off" type="text" class="contact-input" name="First Name" required>
+                          <input autocomplete="off" type="text" class="contact-input" name="firstName" required>
                           <label>First Name</label>
                           <i class="icon fa-solid fa-address-card"></i>
                         </div>
       
                         <div class="input-wrap">
-                            <input autocomplete="off" type="text" class="contact-input" name="Last Name" required>
+                            <input autocomplete="off" type="text" class="contact-input" name="lastName" required>
                             <label>Last name</label>
                             <i class="icon fa-solid fa-address-card"></i>
                         </div>
 
                         <div class="input-wrap">
-                            <input autocomplete="off" type="email" class="contact-input" name="Email" required>
+                            <input autocomplete="off" type="email" class="contact-input" name="email" required>
                             <label>Email</label>
                             <i class="icon fa-solid fa-envelope"></i>
                         </div>
-                      </div>
 
-                      <div class="col-lg-6">
                         <div class="input-wrap textarea">
-                          <textarea class="contact-input" autocomplete="off" name="Message" required></textarea>
+                          <textarea class="contact-input" autocomplete="off" name="message" required></textarea>
                           <label>Message</label>
                           <i class="icon fa-solid fa-inbox"></i>
                         </div>
-                        <div class="input-wrap submit w-100"><input type="submit" value="Send message" class="btn btn-primary w-100 rounded-4"></div>
-                      </div>
+                        <div class="input-wrap submit w-100">
+                          <button type="submit" class="btn btn-primary w-100 rounded-4">Send</button>
+                        </div>
 
                     </div>  
                   </form>

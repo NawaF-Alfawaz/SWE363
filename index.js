@@ -1,6 +1,6 @@
 const express = require('express');
 const db = require('./models/firebase');
-const {collection, getDocs, query, where, doc, getDoc} = require("firebase/firestore");
+const {collection, getDocs, query, where, doc, getDoc, addDoc} = require("firebase/firestore");
 const bodyParser = require('body-parser');
 
 
@@ -22,11 +22,32 @@ app.set('views', 'html')
 
 
 app.get('/', (req, res) => {
-    res.render('index')
+  const productssRef = collection(db, "products");
+  getDocs(productssRef).then((querySnapshot) => {
+      const products =  querySnapshot.docs;
+
+      res.render('index', {products})
+
+    }).catch((error) => {
+      console.log("Error getting documents: ", error);
+    });
 });
 
 app.get('/about-us', (req, res) => {
+  
+
     res.render('about-us')
+});
+
+app.post('/contact-us', (req, res) => {
+  const contactUsRef = collection(db, "contactUs");
+  addDoc(contactUsRef, {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    message: req.body.message,
+  });
+  res.render('about-us')
 });
 
 app.get('/products', (req, res) => {
