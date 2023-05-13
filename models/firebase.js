@@ -1,5 +1,7 @@
 const {initializeApp} = require("firebase/app");
-const {getFirestore,} = require("firebase/firestore");
+const {getFirestore} = require("firebase/firestore");
+const {getAuth, signInWithEmailAndPassword} = require("firebase/auth");
+
 
 
 const firebaseConfig = {
@@ -15,5 +17,6 @@ const firebaseConfig = {
 initializeApp(firebaseConfig);
 
 const db = getFirestore();
+const auth = getAuth();
 
-module.exports = db;
+module.exports = {db,auth};

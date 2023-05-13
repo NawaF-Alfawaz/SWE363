@@ -18,7 +18,6 @@ let code = `
                       <option>1</option>
                       <option>2</option>
                       <option>3</option>
-                                        <!-- add more options here -->
                 </select>
                 <label class="prodprice">${price}</label>
                                     <button type="button" class="btn btn-danger" onclick="removeNode1()">Delete</button>
