@@ -14,12 +14,38 @@ app.use(bodyParser.json());
 
 
 
-let cart = [];
+let cart = {"total": 0,"products":{}};
 
 app.post('/cart/add', (req, res) => {
-  const item = req.body;
-  cart.push(item);
+  const product = req.body;
+  if (cart['products'][product.id]) {
+    cart['products'][product.id].quantity += 1;
+    cart['total'] = cart['total'] + product.price;
+  } else {
+    product['quantity'] = 1;
+    cart['products'][product.id] = product;
+    cart['total'] = cart['total'] + product.price;
+  }
+
   res.send(cart);
+});
+
+app.get('/cart-page-v3', (req, res) => {
+  res.render('cart-page-v3', {cart})
+});
+
+app.post('/add/order', (req, res) => {
+  if(auth.currentUser.uid == null){
+    console.log("Logged Out");
+  } else {
+    const customersRef = collection(db, "orders");
+    addDoc(customersRef, {
+      customerId:auth.currentUser.uid,
+      items: cart['products'],
+      total: cart['total'],
+  });
+  }
+
 });
 
 
@@ -111,6 +137,7 @@ app.get('/products/:id', (req, res) => {
   const docRef = doc(productsRef, productId);
   getDoc(docRef).then((docSnapshot) => {
       const product = docSnapshot.data();
+      
       res.render('product-generic', {product})
 
   }).catch((error) => {
@@ -162,23 +189,6 @@ app.post('/products/search', (req, res) => {
       });
 
   
-  
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-app.post('/add_order', (req, res) => {
   
 });
 
@@ -245,10 +255,3 @@ app.post('/account-setting/addresses/add', (req, res) => {
 
 
 
-
-
-
-
-app.get('/cart-page-v3', (req, res) => {
-    res.render('cart-page-v3')
-});

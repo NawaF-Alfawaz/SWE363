@@ -57,8 +57,7 @@
                 <div class="bg-body-tertiary rounded-4 section-item m-2" style="width: 40vw;">
                     <h3 class="fw-bold">Order: <%=id%></h3>
                     <div>
-                        <h5>Items: <%=items.length%></h5>
-                        <h5>Prics: <%=total%>$</h5>
+                        <h5>Total Price: <%=total%>$</h5>
                         <br>
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary shadow-none bottom-right" data-bs-toggle="modal" data-bs-target="#orderModal<%= id %>">
@@ -74,9 +73,36 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <% items.forEach (item => {%>
-                                    <h4>- <%=item%></h4>
-                                <%})%>
+
+                                <table>
+                                    <tr>
+                                      <th>Product</th>
+                                      <th>Quantity</th>
+                                      <th>Price</th>
+                                      <th>Total</th>
+                                    </tr>
+                                        <% for (const key in items) {
+                                             if (Object.hasOwnProperty.call(items, key)) {
+                                               const value = items[key];
+                                               %>
+                                               <tr>
+                                                <td><%=value.title%></td>
+                                                <td><%=value.quantity%></td>
+                                                <td>$<%=value.price%></td>
+                                                <td>$<%= value.quantity * value.price%></td>
+                                              </tr>
+                                               <%
+                                             }
+                                           }
+                                        %>
+
+                                    <tr>
+                                      <td colspan="3">Grand Total</td>
+                                      <td>$<%=total%></td>
+                                    </tr>
+                                  </table>
+                                  
+                                  
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -84,10 +110,6 @@
                             </div>
                         </div>
                         </div>
-
-
-
-
 
                     </div>
                 </div>
