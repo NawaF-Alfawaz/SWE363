@@ -18,43 +18,67 @@
 <body>
   <%- include('./partials/nav.ejs') %>
   
-      <h1>Cart</h1>
+  <h1 id="cartHeader">Cart</h1>
 
-    <div class="row">
-      <div class="col-md-12">
-        <div>
+  <div class="row">
+    <div class="col-md-12">
+      <div>
         <div class="row align-items-center">
-        <div class="row">
-          <div class="col-md-8">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="ph">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="ph">
+                    
+                    <% for (const key in cart.products) {
+                      if (Object.hasOwnProperty.call(cart.products, key)) {
+                        const value = cart.products[key];
+                        %>
+
+                        <div class="product-box box" id="product1">
+                          <div class="product-image"> <img src=<%=value.url%> alt=""></div>
+                          <div>
+                            <p class="product-text">Product: <%=value.title%></p>
+                            <p class="product-text">Type: <%=value.type%></p>
+                            <p class="product-text">Quantity: <%=value.quantity%></p>
+                            <p class="product-text">Total price: <%=value.price * value.quantity%></p>
+
+                          </div>
+                        </div>
+
+                        <%
+                      }
+                    }
+                 %>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+              <div class="price-box box">
+                <div class="ph1">
+                  <p class="t">total: <%=cart.total%></p>
+                  <label class="prodprice">
+                    <p id="total-price"></p>
+                  </label>
+                  <button type="button" class="btn btn-primary checkout-btn" id="create-new-order">
+                    checkout
+                  </button>
 
                 </div>
+              </div>
+            </div>
           </div>
-
         </div>
-
       </div>
-
-      
-      <div class="col-md-4">
-  
-        <div class="price-box box" >
-            <div class="ph1">
-                <p class="t">total :</p>
-                <label class="prodprice"><p id="total-price"></p></label>
-          <button type="button" class="btn btn-primary checkout-btn" id="create-new-order">Checkout</button>
-        </div>
-    </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 <!-- script -->
- <script src="../js/cartjs.js"></script>
  <script src="../js/orders.js"></script>
 
 

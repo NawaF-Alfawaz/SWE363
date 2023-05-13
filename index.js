@@ -3,7 +3,14 @@ const bodyParser = require('body-parser');
 const {db, auth} = require('./models/firebase');
 const {collection, getDocs, query, where, doc, getDoc, addDoc, updateDoc} = require("firebase/firestore");
 const {signOut, signInWithEmailAndPassword} = require("firebase/auth");
+// For signup
+const admin = require("firebase-admin")
+const serviceAccount = require("./keyboarders-26884-firebase-adminsdk-mahx7-9c67afc1e8.json");
+admin.initializeApp({
+credential: admin.credential.cert(serviceAccount)
+})
 
+let user = null;
 
 
 // Express App
@@ -31,20 +38,35 @@ app.post('/cart/add', (req, res) => {
 });
 
 app.get('/cart-page-v3', (req, res) => {
-  res.render('cart-page-v3', {cart})
+
+  if(user == null){
+    res.render('login')
+  }
+  else{
+    const customersRef  = collection(db, 'customers');
+    const q = query(customersRef, where("id", "==", user.uid));
+    getDocs(q).then((querySnapshot) => {
+      customer =  querySnapshot.docs.forEach((cus)=>{
+        customer = cus.data();
+        res.render('cart-page-v3', {cart, customer})
+      });
+    });
+
+  }
+
 });
 
 app.post('/add/order', (req, res) => {
-  if(auth.currentUser.uid == null){
+  if(user.uid == null){
     console.log("Logged Out");
   } else {
     if(cart['total'] == 0){
       res.json({ message: "You did not add anything to the cart" });
 
     }else {
-      const customersRef = collection(db, "orders");
-      addDoc(customersRef, {
-        customerId:auth.currentUser.uid,
+      const ordersRef = collection(db, "orders");
+      addDoc(ordersRef, {
+        customerId:user.uid,
         items: cart['products'],
         total: cart['total'],
       }).then(()=>{
@@ -68,12 +90,6 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.set('views', 'html')
 
-app.post('/login', (req, res) =>{
-  signInWithEmailAndPassword(auth, req.body.email, req.body.password)
-  .then((cred)=>{
-    res.redirect('/account-setting');
-  });
-});
 
 app.get('/', (req, res) => {
   const productssRef = collection(db, "products");
@@ -86,13 +102,6 @@ app.get('/', (req, res) => {
       console.log("Error getting documents: ", error);
     });
 });
-
-
-
-
-
-
-
 
 
 
@@ -110,16 +119,6 @@ app.post('/contact-us', (req, res) => {
   });
   res.render('about-us')
 });
-
-
-
-
-
-
-
-
-
-
 
 
 app.get('/products', (req, res) => {
@@ -200,25 +199,17 @@ app.post('/products/search', (req, res) => {
 });
 
 
-
-
-
-
-
-
-
-
 app.get('/account-setting', (req, res) => {
 
-  if(auth.currentUser == null){
-    res.render('login')
+  if(user == null){
+    res.redirect('/login')
   }
   else{
     const ordersRef = collection(db, 'orders');
-    const q1 = query(ordersRef, where("customerId", "==", auth.currentUser.uid));
+    const q1 = query(ordersRef, where("customerId", "==", user.uid));
 
     const customersRef  = collection(db, 'customers');
-    const q2 = query(customersRef, where("id", "==", auth.currentUser.uid));
+    const q2 = query(customersRef, where("id", "==", user.uid));
 
     getDocs(q1).then((querySnapshot) => {
       orders =  querySnapshot.docs;
@@ -237,7 +228,7 @@ app.get('/account-setting', (req, res) => {
 
 app.post('/account-setting/addresses/add', (req, res) => {
   const customersRef  = collection(db, 'customers');
-    const q = query(customersRef, where("id", "==", auth.currentUser.uid));
+    const q = query(customersRef, where("id", "==", user.uid));
       getDocs(q).then((querySnapshot) => {
         querySnapshot.docs.forEach((cus)=>{
           const addresses = cus.data().addresses;
@@ -254,11 +245,49 @@ app.post('/account-setting/addresses/add', (req, res) => {
       });
 });
 
+app.get('/signup', (req, res) => {
+  res.render('signup')
+  })
+  
+app.post('/signup', async (req, res) => {
+  const { name, email, password } = req.body; // Get form values
+  console.log(email, password); // Debugging
+  
+  // Creating user
+  const userRecord = await admin.auth().createUser({
+  email,
+  password,
+  });
+  console.log("User created: " + userRecord.uid);
+  user = userRecord;
+  
+  const customersRef = collection(db, "customers");
+  await addDoc(customersRef, {
+  name: name,
+  email: email,
+  password: password,
+  id: user.uid,
+  addresses: []
+  });
+  res.redirect('/');
+  
+  });
+  
+  app.get('/login', (req, res) => {
+  res.render('login')
+  })
+  
+  app.post('/login', (req, res) => {
 
+  const {email, password} = req.body;
+  // Login
+  signInWithEmailAndPassword(auth, email, password)
+  .then(credentials => {
+    user = credentials.user;
+    res.redirect('/');
+  })
+  .catch(err => {
+  console.log(err)
+  })
 
-
-
-
-
-
-
+  })

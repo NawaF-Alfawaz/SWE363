@@ -15,11 +15,13 @@ function createOrder() {
       url: "/add/order",
       success: function(response) {
         alert(response.message);
+        window.location.href = "/";
       },
       error: function(xhr, status, error) {
         alert("Error: " + error);
       }
     });
+
   
   
   }

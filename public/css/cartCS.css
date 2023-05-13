@@ -28,7 +28,16 @@
       align-items: center;
       justify-content: space-between;
     }
+    img{
+      width: 100%;
+      height: 100%;
+      background-size: cover; 
+      background-position: center;
+
+    }
     .product-image {
+      background-size: cover; 
+      background-position: center;
       width: 100px;
       height: 100px;
       background-color: lightgray;
@@ -62,3 +71,12 @@
   -webkit-text-fill-color: transparent;
     
 }
+
+.ph .btn-danger{
+  margin-top: 7px;
+}
+
+#cartHeader{
+  color: white;
+}
+

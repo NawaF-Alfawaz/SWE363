@@ -18,7 +18,6 @@ initializeApp(firebaseConfig);
 
 const db = getFirestore();
 const auth = getAuth();
-signInWithEmailAndPassword(auth, 'test@test.com', '123456')
 
 
 module.exports = {db,auth};
