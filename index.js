@@ -38,18 +38,25 @@ app.post('/add/order', (req, res) => {
   if(auth.currentUser.uid == null){
     console.log("Logged Out");
   } else {
-    const customersRef = collection(db, "orders");
-    addDoc(customersRef, {
-      customerId:auth.currentUser.uid,
-      items: cart['products'],
-      total: cart['total'],
-  });
+    if(cart['total'] == 0){
+      res.json({ message: "You did not add anything to the cart" });
+
+    }else {
+      const customersRef = collection(db, "orders");
+      addDoc(customersRef, {
+        customerId:auth.currentUser.uid,
+        items: cart['products'],
+        total: cart['total'],
+      }).then(()=>{
+        res.json({ message: "New order has been created" });
+        cart = {"total": 0,"products":{}};
+      });
+
+    }
+
   }
 
 });
-
-
-
 
 // Listen for requests
 app.listen(3000);

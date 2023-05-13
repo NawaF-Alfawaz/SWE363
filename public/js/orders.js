@@ -9,14 +9,20 @@ const addToCartButton = document.getElementById('create-new-order');
 
 
 function createOrder() {
-    alert("New order has been created");
-    fetch('/add/order', {
-      method: 'POST',
-      body: JSON.stringify({}),
-      headers: {
-        'Content-Type': 'application/json'
+      
+    $.ajax({
+      type: "POST",
+      url: "/add/order",
+      success: function(response) {
+        alert(response.message);
+      },
+      error: function(xhr, status, error) {
+        alert("Error: " + error);
       }
-    })
-    .then(response => response.json())
-    .catch(error => console.error(error));
+    });
+  
+  
   }
+
+
+  
